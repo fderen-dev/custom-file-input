@@ -1,7 +1,7 @@
 {
-  "name": "react-typescript-boilerplate",
+  "name": "custom-file-input",
   "version": "1.0.0",
-  "description": "Basic preferred react, typescript, webpack setup.",
+  "description": "File input with custom styling, written in React + TypeScript",
   "main": "index.js",
   "browserslist": [
     "last 10 versions",
@@ -16,18 +16,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/fderen-dev/react-typescript-boilerplate.git"
+    "url": "git+https://github.com/fderen-dev/custom-file-input.git"
   },
   "keywords": [
-    "react boilerplate",
+    "file input",
     "typescript react"
   ],
   "author": "fderen-dev",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/fderen-dev/react-typescript-boilerplate/issues"
+    "url": "https://github.com/fderen-dev/custom-file-input/issues"
   },
-  "homepage": "https://github.com/fderen-dev/react-typescript-boilerplate#readme",
+  "homepage": "https://github.com/fderen-dev/custom-file-input#readme",
   "devDependencies": {
     "@babel/core": "^7.10.2",
     "@babel/plugin-proposal-class-properties": "^7.10.1",
@@ -36,11 +36,9 @@
     "@babel/preset-env": "^7.10.2",
     "@babel/preset-react": "^7.10.1",
     "@babel/preset-typescript": "^7.10.1",
-    "@reduxjs/toolkit": "^1.3.6",
     "@types/node-sass": "^4.11.1",
     "@types/react": "^16.9.36",
     "@types/react-dom": "^16.9.8",
-    "@types/react-redux": "^7.1.9",
     "@types/webpack-env": "^1.15.2",
     "@typescript-eslint/eslint-plugin": "^3.3.0",
     "@typescript-eslint/parser": "^3.3.0",
@@ -73,7 +71,6 @@
   },
   "dependencies": {
     "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-redux": "^7.2.0"
+    "react-dom": "^16.13.1"
   }
 }
