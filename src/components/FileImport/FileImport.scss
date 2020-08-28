@@ -1,0 +1,88 @@
+@import '../../styles/colors.scss';
+
+.file-import {
+  display: flex;
+  flex-direction: row;
+  min-height: 50px;
+  font-family: 'Exo', sans-serif;
+  background-color: $dark-grey;
+
+  .imports-list {
+    width: 70%;
+    padding: 0.5em;
+    margin-right: 0.1em;
+    border: solid 0.1em $yellow;
+    list-style: none;
+    overflow-y: auto;
+
+    /* scrollbar styles */
+
+    &::-webkit-scrollbar {
+      width: 0.5em;
+      background-color: rgba(252, 219, 3, 0.3);
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: rgba(252, 219, 3, 0.5);
+    }
+
+    .import-item {
+      display: flex;
+      padding: 0.2em;
+      justify-content: space-between;
+      color: $yellow;
+      font-size: 0.9em;
+
+      &:hover {
+        background-color: $yellow;
+        color: $dark-grey;
+      }
+
+      span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        cursor: default;
+      }
+
+      > span:nth-child(1) {
+        width: 50%;
+      }
+
+      > span:nth-child(2) {
+        width: 60px;
+        display: inline-flex;
+        justify-content: space-between;
+      }
+
+      > span:nth-child(3) {
+        cursor: pointer;
+      }
+    }
+  }
+
+  .buttons-container {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    max-width: 150px;
+
+    > button:first-of-type {
+      margin-bottom: 0.1em;
+    }
+
+    button {
+      width: 100%;
+      height: 50%;
+      outline: none;
+      font-family: 'Exo', sans-serif;
+      font-size: 1em;
+      color: $yellow;
+      background-color: $dark-grey;
+      border-color: $yellow;
+    }
+  }
+}
+
+.file-input {
+  display: none;
+}
