@@ -1,17 +1,14 @@
-# React-typescript boilerplate
+# Custom file input
+### with React, hooks and TypeScript,
+#### based on [react-typescript-boilerplate](https://github.com/fderen-dev/react-typescript-boilerplate).
 
-### Basic preferred boilerplate for React-Typescript-Webpack setup
+### To run:
+1. Clone, navigate to repo directory.
+2. Install dependecies `npm install`
+3. Run! `npm start`
 
-### Tech stack
-
-- [x] React.js 16
-- [x] TypeScript 3
-- [x] Webpack 4
-- [x] Redux Toolkit
-- [x] Babel
-- [x] ESlint, Prettier
-- [x] Jest
-
-- [x] Code splitting,
-- [x] sass, css extraction,
-- [x] Postcss + autoprefixer.
+### Stack:
+* sass,
+* autoprefixer,
+* uuid,
+* React, TypeScript, Webpack, loaders, plugins..... [react-typescript-boilerplate](https://github.com/fderen-dev/react-typescript-boilerplate)
