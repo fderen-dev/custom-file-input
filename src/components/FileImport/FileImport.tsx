@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { v4 as uid } from 'uuid';
 
 import FileItem from './FileItem';
@@ -16,6 +16,10 @@ function getSize(number: number): { amount: string; unit: string } {
   return { amount: '0', unit: 'b' };
 }
 
+function computeFilesSize(files: Array<FileExtended>): number {
+  return files.reduce((acc: number, item: FileExtended): number => acc + item.size, 0);
+}
+
 interface FileExtended extends File {
   id: string;
 }
@@ -27,10 +31,13 @@ function handleSend(files: Array<FileExtended>): void {
 interface FileImportProps {
   multiple?: boolean;
   acceptedFiles?: string;
+  maxFilesMBSize?: number;
+  maxFilesAmount?: number;
 }
 
-const FileImport: React.FunctionComponent<FileImportProps> = props => {
+const FileImport: React.FunctionComponent<FileImportProps> = ({ maxFilesMBSize, maxFilesAmount, ...props }) => {
   const [files, setFiles] = useState<Array<FileExtended>>([]);
+  const [error, setError] = useState<string | undefined>();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleFileDelete = (fileId: string): void => {
@@ -59,8 +66,14 @@ const FileImport: React.FunctionComponent<FileImportProps> = props => {
     }
   };
 
+  useEffect(() => {
+    if (maxFilesMBSize && computeFilesSize(files) / 1048576 > maxFilesMBSize) setError('Max files size exceeded.');
+    else if (maxFilesAmount && files.length > maxFilesAmount) setError('Max files amount exceeded.');
+    else setError(undefined);
+  }, [files, maxFilesMBSize, maxFilesAmount]);
+
   return (
-    <div className="file-import">
+    <>
       <input
         type="file"
         multiple={props.multiple}
@@ -69,22 +82,31 @@ const FileImport: React.FunctionComponent<FileImportProps> = props => {
         ref={fileInputRef}
         className="file-input"
       />
-      <ul className="imports-list">
-        {files.map(file => (
-          <FileItem
-            name={file.name}
-            size={getSize(file.size)}
-            key={file.id}
-            onDelete={() => handleFileDelete(file.id)}
-            className="import-item"
-          />
-        ))}
-      </ul>
-      <div className="buttons-container">
-        <button onClick={handleImport}>import</button>
-        <button onClick={() => handleSend(files)}>send</button>
+      <div className="content-wrapper">
+        <div className="description">
+          {maxFilesAmount && <div>Max files amount: {maxFilesAmount}</div>}
+          {maxFilesMBSize && <div>Max files size: {maxFilesMBSize} MB</div>}
+        </div>
+        <div className="file-import">
+          <ul className="imports-list">
+            {files.map(file => (
+              <FileItem
+                name={file.name}
+                size={getSize(file.size)}
+                key={file.id}
+                onDelete={() => handleFileDelete(file.id)}
+                className="import-item"
+              />
+            ))}
+          </ul>
+          <div className="buttons-container">
+            <button onClick={handleImport}>import</button>
+            <button onClick={() => handleSend(files)}>send</button>
+          </div>
+        </div>
+        {error && <span className="error">{error}</span>}
       </div>
-    </div>
+    </>
   );
 };
 
